@@ -1,4 +1,4 @@
-#Alogorithm.01
+#Alogorithm 01
 def Multiprecision_addition(a,b) :
     e = 0
     c = ['']*len(a)
