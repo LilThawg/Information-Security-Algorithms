@@ -1,4 +1,4 @@
-# Alogorithm 01
+# Alogorithm 02
 import math
 
 def Multiprecision_addition(a, b, w=8, p=2147483647):
