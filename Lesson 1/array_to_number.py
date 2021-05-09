@@ -10,4 +10,4 @@ def array_to_number(arr,w=8,p=2147483647):
     return a
 
 if __name__ == '__main__':
-    print(array_to_number([1, 101, 236, 21]))
+    print(array_to_number([127, 255, 255, 255]))
