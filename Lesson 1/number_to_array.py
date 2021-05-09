@@ -1,4 +1,5 @@
 import math
+
 def number_to_array (a,w=8,p=2147483647):
     m = math.ceil(math.log(p, 2))
     t = math.ceil(m / w)
