@@ -34,11 +34,3 @@ if __name__ == '__main__':
         print('NO MATCH !')
     else :
         print('HAVE A MATCH AT INDEX {}'.format(Boyer_Moore(P,T)))
-
-
-
-
-
-
-
-
