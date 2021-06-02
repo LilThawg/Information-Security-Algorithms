@@ -1,4 +1,4 @@
-# Alogorithm 04
+# Alogorithm 03
 import math
 
 def Multiprecision_addition(a, b, w=8, p=2147483647):
@@ -13,6 +13,7 @@ def Multiprecision_addition(a, b, w=8, p=2147483647):
         else :
             e = 0
     return e,c
+
 def Multiprecision_subtraction(a, b, w=8, p=2147483647):
     m = math.ceil(math.log(p, 2))
     t = math.ceil(m / w)
@@ -25,13 +26,15 @@ def Multiprecision_subtraction(a, b, w=8, p=2147483647):
         else :
             e = 0
     return e,c
+
 def Subtraction_in_Fp (a,b,p):
     e,c = Multiprecision_subtraction(a,b)
-    if e == 0 :
-        return e,c
-    else :
-        e,c = Multiprecision_addition(c,p)
-        return e,c
+    if e == 1 :
+        e, c = Multiprecision_addition(c, p)
+    if array_to_number(c) >= array_to_number(p) :
+        e,c = Multiprecision_subtraction(c, p)
+    return c
+
 def number_to_array (a,w=8,p=2147483647):
     m = math.ceil(math.log(p, 2))
     t = math.ceil(m / w)
@@ -44,10 +47,18 @@ def number_to_array (a,w=8,p=2147483647):
         sum += arr[i] * x
         tmp = a - sum
     return arr
+
+def array_to_number(arr,w=8,p=2147483647):
+    m = math.ceil(math.log(p, 2))
+    t = math.ceil(m / w)
+    a = 0
+    for i in range(t):
+        x = pow(2, ((t - 1 - i) * w))
+        a += arr[i] * x
+    return a
+
 if __name__ == '__main__':
-       a = [0,11,173,248]
-       b = [0,1,226,64]
+       a = number_to_array(38762497)
+       b = number_to_array(568424364)
        p = number_to_array(2147483647)
        print(Subtraction_in_Fp(a,b,p))
-
-
