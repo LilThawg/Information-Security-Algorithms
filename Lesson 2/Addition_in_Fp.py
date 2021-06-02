@@ -13,6 +13,7 @@ def Multiprecision_addition(a, b, w=8, p=2147483647):
         else :
             e = 0
     return e,c
+
 def Multiprecision_subtraction(a, b, w=8, p=2147483647):
     m = math.ceil(math.log(p, 2))
     t = math.ceil(m / w)
@@ -25,13 +26,15 @@ def Multiprecision_subtraction(a, b, w=8, p=2147483647):
         else :
             e = 0
     return e,c
+
 def Addition_in_Fp (a,b,p):
     e,c = Multiprecision_addition(a,b)
-    if e == 0 :
-        return e,c
-    else :
-        e,c = Multiprecision_subtraction(c,p)
-        return e,c
+    if e == 1 :
+        e, c = Multiprecision_subtraction(c, p)
+    if array_to_number(c) >= array_to_number(p) :
+        e,c = Multiprecision_subtraction(c, p)
+    return c
+
 def number_to_array (a,w=8,p=2147483647):
     m = math.ceil(math.log(p, 2))
     t = math.ceil(m / w)
@@ -44,10 +47,19 @@ def number_to_array (a,w=8,p=2147483647):
         sum += arr[i] * x
         tmp = a - sum
     return arr
+
+def array_to_number(arr,w=8,p=2147483647):
+    m = math.ceil(math.log(p, 2))
+    t = math.ceil(m / w)
+    a = 0
+    for i in range(t):
+        x = pow(2, ((t - 1 - i) * w))
+        a += arr[i] * x
+    return a
+
 if __name__ == '__main__':
-       a = [157,0,173,23]
-       b = [169,1,0,64]
+       a = [127,255,255,254]
+       b = [127,255,255,251]
        p = number_to_array(2147483647)
        print(Addition_in_Fp(a,b,p))
-
 
