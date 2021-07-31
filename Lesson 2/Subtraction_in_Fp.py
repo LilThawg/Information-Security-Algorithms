@@ -28,11 +28,9 @@ def Multiprecision_subtraction(a, b, w=8, p=2147483647):
     return e,c
 
 def Subtraction_in_Fp (a,b,p):
-    e,c = Multiprecision_subtraction(a,b)
-    if e == 1 :
-        e, c = Multiprecision_addition(c, p)
-    if array_to_number(c) >= array_to_number(p) :
-        e,c = Multiprecision_subtraction(c, p)
+    e, c = Multiprecision_subtraction(a, b)
+    while array_to_number(c) >= array_to_number(p):
+        e, c = Multiprecision_subtraction(c, p)
     return c
 
 def number_to_array (a,w=8,p=2147483647):
@@ -58,7 +56,7 @@ def array_to_number(arr,w=8,p=2147483647):
     return a
 
 if __name__ == '__main__':
-       a = number_to_array(38762497)
-       b = number_to_array(568424364)
-       p = number_to_array(2147483647)
-       print(Subtraction_in_Fp(a,b,p))
+    a = number_to_array(38762497)
+    b = number_to_array(568424364)
+    p = number_to_array(2147483647)
+    print(Subtraction_in_Fp(a,b,p))
