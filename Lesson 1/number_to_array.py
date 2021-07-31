@@ -1,5 +1,5 @@
 import math
-#biểu diễn số A thành một ma trận
+#biểu diễn số A thành một arr
 def number_to_array (a,w=8,p=2147483647):
     m = math.ceil(math.log(p, 2))  #m = làm tròn lên log cơ số 2 của p
     t = math.ceil(m / w) # với w bits, w là bội số của 8, t được tính = làm tròn lên (m / w)
