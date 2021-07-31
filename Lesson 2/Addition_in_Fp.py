@@ -1,4 +1,3 @@
-# Alogorithm 03
 import math
 
 def Multiprecision_addition(a, b, w=8, p=2147483647):
@@ -27,11 +26,11 @@ def Multiprecision_subtraction(a, b, w=8, p=2147483647):
             e = 0
     return e,c
 
+# mô tả thuật toán :
+# dùng thuật toán cộng chính xác bội để tìm e,c, nếu number c >= number p thì c = c - p đến khi nào c < p thì return c
 def Addition_in_Fp (a,b,p):
     e,c = Multiprecision_addition(a,b)
-    if e == 1 :
-        e, c = Multiprecision_subtraction(c, p)
-    if array_to_number(c) >= array_to_number(p) :
+    while array_to_number(c) >= array_to_number(p):
         e,c = Multiprecision_subtraction(c, p)
     return c
 
@@ -58,8 +57,16 @@ def array_to_number(arr,w=8,p=2147483647):
     return a
 
 if __name__ == '__main__':
-       a = [127,255,255,254]
-       b = [127,255,255,251]
-       p = number_to_array(2147483647)
-       print(Addition_in_Fp(a,b,p))
-
+    p = number_to_array(2147483647)
+    #test1
+    a = [127,255,255,254]
+    b = [127,255,255,251]
+    print(Addition_in_Fp(a,b,p))
+    #test2
+    a = [157,0,173,23]
+    b = [169,1,0,64]
+    print(Addition_in_Fp(a, b, p))
+    #test3
+    a = [0,11,173,248]
+    b = [0,1,226,64]
+    print(Addition_in_Fp(a, b, p))
